@@ -1,0 +1,11 @@
+Robust and Automated identification of crops from images using Deep Learning
+
+Dataset
+Model	Architecture(Transfer Learning)
+Training
+Testing
+----Model   => pickle file
+
+Integration with app:
+App - input image
+Backend 
