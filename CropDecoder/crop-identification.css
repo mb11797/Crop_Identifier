@@ -23,6 +23,7 @@ label{
 	justify-content: center;
 	align-items: center;
 	font-family: "sans-serif";
+	cursor: pointer;
 }
 button{
 	color-white;
@@ -41,6 +42,7 @@ button{
 	justify-content: center;
 	align-items: center;
 	font-family: "sans-serif";	
+	cursor: pointer;
 }
 .btn,.btn-success{
 	font-size: 25px;
