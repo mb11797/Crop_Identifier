@@ -23,7 +23,7 @@ import cv2
 
 
 #app = Flask(__name__)
-app = Flask(__name__, template_folder='CropDecoder')
+app = Flask(__name__)
 #app.config['SECRET_KEY'] = 'QuarterNibble'
 #api = Api(app)
 
