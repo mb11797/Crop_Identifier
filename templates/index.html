@@ -9,12 +9,35 @@
 			background-color: #002a3f;
 			padding:0;
 			margin: 0;
+			color: white;
 		}
 		input[type="file"]{
 			display:none;
 		}
+		
+		h2{
+			color: white;
+			height: 60px;
+			width : 250px;
+			background-color: #f5af09;
+			position:absolute;
+			margin: auto;
+			top:25%;
+			bottom: 0;
+			border-radius:.25rem;
+			left:0;
+			right:0;
+			font-size:20px;
+			display:flex;
+			justify-content: center;
+			align-items: center;
+			font-family: "sans-serif";
+			cursor: pointer;
+		
+		}		
+				
 		label{
-			color-white;
+			color: white;
 			height: 60px;
 			width : 250px;
 			background-color: #f5af09;
@@ -81,18 +104,17 @@
 <body>
 	<div>
 	<form action="{{url_for('predict')}}" method="post" enctype="multipart/form-data">
-		<input type="file" id="file" name="file" accept="image/*" onchange="readURL(this);">
+		<input type="file" id="file" name="file" accept="image/*">
 		<img id="file" src="#" alt="your image" />
 		<label for="file">
 			<i class="material-icons">add_photo_alternate</i>
 			<span style="margin-left: 5px;">Choose a Photo</span>
 		</label>
 
-		<button type="submit" class="btn btn-success" value='upload'>Predict !!!</button>
+		<button type="submit" class="btn btn-success">Predict !!!</button>
 	</form>
-	<br>
-	<br>
-	{{ prediction }}
+	<br><br><br>
+	<h2>{{ prediction }}</h2>
 	</div>
 </body>
 </html>	

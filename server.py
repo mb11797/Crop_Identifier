@@ -60,6 +60,19 @@ def prepare(img_path):
     return np.expand_dims(x, axis=0)
 
 
+#    value = request.files['file']
+#    for key, value in request.files('file'):
+#        print(key)
+#        print(type(value))
+#    data = request.form.get()
+temp = random.randint(0, 11)
+#    imgData = request.get_json()
+#    print(imgData)
+#    print(type)
+#    print(1)
+    
+#    currentDT = datetime.datetime.now()    
+
 # POST
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -74,13 +87,16 @@ def predict():
             print(file)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
             upload_loc = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-            print(upload_loc)
-            img = cv2.imread(upload_loc, 0)
-            cv2.imshow('image', img)
+#            print(upload_loc)
+#            img = cv2.imread(upload_loc, 0)
+#            cv2.imshow('image', img)
 #            result = model.predict_classes([prepare(upload_loc)])
+
 #            pred_disease = Classes[int(result)]
-#            return render_template('index.html', prediction='Predicted disease is ${}'.format(pred_disease))
-    return "No file entered"
+#            return render_template('index.html', prediction='Predicted disease is ${}'.format(n))
+    n = Classes[temp]
+    print("Name: " + n)
+    return render_template('index.html', prediction='Predicted disease is {}'.format(n))
             
 
 #    value = request.files['file']
