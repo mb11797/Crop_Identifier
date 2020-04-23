@@ -48,7 +48,7 @@
 			display:flex;
 			justify-content: center;
 			align-items: center;
-			font-family: "sans-serif";	
+			font-family: "sans-serif";
 			cursor: pointer;
 		}
 		.btn,.btn-success{
@@ -60,7 +60,7 @@
 	<title>CropDecoder</title>
 </head>
 <body>
-	<form method="post">
+	<form action="{{url_for('predict')}}" method="post">
 		<input type="file" id="file" accept="image/*">
 		<label for="file">
 			<i class="material-icons">add_photo_alternate</i>
@@ -68,6 +68,9 @@
 		</label>
 		<button type="submit" class="btn btn-success">Predict !!!</button>
 	</form>
+	<br>
+	<br>
+	{{ prediction }}
 
 </body>
 </html>	

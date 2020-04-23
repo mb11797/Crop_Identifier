@@ -9,7 +9,7 @@ Created on Thu Apr 23 03:19:23 2020
 import requests
 import base64
 import json
-#import sys
+import sys
 from flask import Flask, render_template, request, jsonify, request, send_from_directory
 from flask_restful import Resource, Api, reqparse
 import os
@@ -17,8 +17,6 @@ import random
 import string
 import cv2
 import datetime
-from keras.preprocessing import image
-import numpy as np
 
 
 app = Flask(__name__)
@@ -51,60 +49,51 @@ def convertImage(imgData1, upload_loc):
 	with open( upload_loc, "wb") as output:
 		output.write(base64.b64decode(imgData1))
 
-def prepare(img_path):
-    img = image.load_img(img_path, target_size=(256, 256))
-    x = image.img_to_array(img)
-    x = x/255
-    return np.expand_dims(x, axis=0)
 
-
-# POST
-@app.route('/predict', methods=['POST'])
+@app.route('/predict')
 def predict():
     '''
     For rendering results on HTML
     '''
-    imgData = request.get_json()
-    print(1)
+    data = request.get_json()
     currentDT = datetime.datetime.now()    
     random_string = currentDT.strftime('%m/%d/%Y')
     upload_loc = os.path.join(UPLOAD_FOLDER, random_string + ".jpg")
     convertImage(imgData, upload_loc)
-#    result = model.predict_classes([prepare('/content/drive/My Drive/Test_D/Tomato_BacterialSpot/Tomato___Bacterial_spot(901).JPG')])
-    result = model.predict_classes([prepare(imgData)])
-    pred_disease = Classes[int(result)]
+
     
-    return render_template('index.html', prediction='Predicted disease is ${}'.format(pred_disease))
+    return render_template('index.html')
+    
 
 
-## POST
-#@app.route('/uploadform', methods=['POST'])
-#def form():
-#    return render_template('index.html')
+# POST
+@app.route('/uploadform', methods=['POST'])
+def form():
+    return render_template('index.html')
+
+class ImageUpload(Resource):
+    def post(self):
+        data = request.get_json()
+        # random_string = data["latitude"] + "_" + data["longitude"]
+
+
+        random_string = "KA"
+
+        upload_loc = os.path.join(UPLOAD_FOLDER, random_string + ".jpg")
+
+        imgData = data['image']
+        convertImage(imgData, upload_loc)
+        sz = len(imgData) / (1024 * 1024)
+
+        decoded_image = cv2.imread(upload_loc)
+
+#        extracted_data = pytesseract.image_to_string(decoded_image, lang='eng+hin+tam')
 #
-#class ImageUpload(Resource):
-#    def post(self):
-#        data = request.get_json()
-#        # random_string = data["latitude"] + "_" + data["longitude"]
+#        data = {"Image Data": extracted_data}
 #
-#
-#        random_string = "KA"
-#
-#        upload_loc = os.path.join(UPLOAD_FOLDER, random_string + ".jpg")
-#
-#        imgData = data['image']
-#        convertImage(imgData, upload_loc)
-#        sz = len(imgData) / (1024 * 1024)
-#
-#        decoded_image = cv2.imread(upload_loc)
-#
-##        extracted_data = pytesseract.image_to_string(decoded_image, lang='eng+hin+tam')
-##
-##        data = {"Image Data": extracted_data}
-##
-##        data = jsonify(data)
-#
-#        return 1
+#        data = jsonify(data)
+
+        return 1
 
 
 
