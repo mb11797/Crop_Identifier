@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" 			crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='static/css/crop_identification.css') }}" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<style>
 		body{
@@ -57,20 +57,42 @@
 		}
 	</style>
 	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	
+	<script>
+		function readURL(input) {
+		if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+
+		    reader.onload = function (e) {
+				    $('#blah')
+				    .attr('src', e.target.result)
+				    .width(150)
+				    .height(200);
+			    };
+
+			    reader.readAsDataURL(input.files[0]);
+			}
+	    	}
+		
+	</script>
+		
 	<title>CropDecoder</title>
 </head>
 <body>
-	<form action="{{url_for('predict')}}" method="post">
-		<input type="file" id="file" accept="image/*">
+	<div>
+	<form action="{{url_for('predict')}}" method="post" enctype="multipart/form-data">
+		<input type="file" id="file" name="file" accept="image/*" onchange="readURL(this);">
+		<img id="file" src="#" alt="your image" />
 		<label for="file">
 			<i class="material-icons">add_photo_alternate</i>
 			<span style="margin-left: 5px;">Choose a Photo</span>
 		</label>
-		<button type="submit" class="btn btn-success">Predict !!!</button>
+
+		<button type="submit" class="btn btn-success" value='upload'>Predict !!!</button>
 	</form>
 	<br>
 	<br>
 	{{ prediction }}
-
+	</div>
 </body>
 </html>	
