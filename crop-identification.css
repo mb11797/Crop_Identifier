@@ -1,0 +1,50 @@
+body{
+	background-color: #002a3f;
+	padding:0;
+	margin: 0;
+}
+input[type="file"]{
+	display:none;
+}
+label{
+	color-white;
+	height: 60px;
+	width : 250px;
+	background-color: #f5af09;
+	position:absolute;
+	margin: auto;
+	top:0;
+	bottom: 0;
+	border-radius:.25rem;
+	left:0;
+	right:0;
+	font-size:20px;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "sans-serif";
+	cursor: pointer;
+}
+button{
+	color-white;
+	height: 55px;
+	width : 150px;
+	background-color: #f5af09;
+	position:absolute;
+	margin: auto;
+	top:25%;
+	outline-style:none;
+	bottom: 0;
+	padding:0;
+	left:0;
+	right:0;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	font-family: "sans-serif";	
+	cursor: pointer;
+}
+.btn,.btn-success{
+	font-size: 25px;
+	font-family: "sans-serif"
+}

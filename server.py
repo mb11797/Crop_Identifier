@@ -22,7 +22,8 @@ import string
 import cv2
 
 
-app = Flask(__name__)
+#app = Flask(__name__)
+app = Flask(__name__, template_folder='CropDecoder')
 #app.config['SECRET_KEY'] = 'QuarterNibble'
 #api = Api(app)
 
@@ -34,6 +35,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ######################### APP ROUTES ##############################
 
 @app.route('/')
+def main():
+    return render_template('index.html')
+#    return "<h1>HOME PAGE</h1>"
 
 @app.route('/index')
 def index():
@@ -85,6 +89,10 @@ class ImageUpload(Resource):
 
 
 
+## Running the server
+#if __name__ == "__main__":
+#    app.run(host='127.0.0.0', port = 5000)
+
 # Running the server
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port = 5000)
+    app.run()
