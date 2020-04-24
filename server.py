@@ -60,19 +60,7 @@ def prepare(img_path):
     x = image.img_to_array(img)
     x = x/255
     return np.expand_dims(x, axis=0)
-
-
-    value = request.files['file']
-    for key, value in request.files('file'):
-        print(key)
-        print(type(value))
-    data = request.form.get()
-    imgData = request.get_json()
-    print(imgData)
-    print(type)
-    print(1)
-    
-    currentDT = datetime.datetime.now()    
+  
 
 # POST
 @app.route('/predict', methods=['POST'])
@@ -85,7 +73,7 @@ def predict():
         file = request.files['file']
         if file:
 #            print(file.filename)
-            temp = random.randint(0, 11)
+#            temp = random.randint(0, 11)
 #            print(file)
             upload_loc = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
             file.save(upload_loc)
@@ -97,70 +85,70 @@ def predict():
 
             pred_disease = Classes[int(result)]
             return render_template('index.html', prediction='Predicted disease is ${}'.format(pred_disease))
-    n = Classes[temp]
+#    n = Classes[temp]
 #    print("Name: " + n)
-    return render_template('index.html', prediction='Predicted disease is {}'.format(n))
+    return "No file selected"
             
-
-    value = request.files['file']
-    for key, value in request.files('file'):
-        print(key)
-        print(type(value))
-    data = request.form.get()
-    imgData = request.get_json()
-    print(imgData)
-    print(type)
-    print(1)
-    currentDT = datetime.datetime.now()    
-    random_string = currentDT.strftime('%m/%d/%Y')
-    random_string = "mb";
-    upload_loc = os.path.join(UPLOAD_FOLDER, random_string + ".jpg")
-    imgData = data['file']
-    print(key)
-    print(value)
-    convertImage(imgData, upload_loc)
-    result = model.predict_classes([prepare(imgData)])
-    r = request
-    print(r.get_json())
-    # convert string of image data to uint8
-    nparr = np.frombuffer(r.data, np.uint8)
-    # decode image
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    img = cv2.resize(img, (256,256))
-    result = model.predict_classes([prepare(img)])
-    pred_disease = Classes[int(result)]
-    
-    return render_template('index.html', prediction='Predicted disease is ${}'.format(n))
-    return "MB"
-
-# POST
-@app.route('/uploadform', methods=['POST'])
-def form():
-    return render_template('index.html')
-
-class ImageUpload(Resource):
-    def post(self):
-        data = request.get_json()
-        # random_string = data["latitude"] + "_" + data["longitude"]
-
-
-        random_string = "KA"
-
-        upload_loc = os.path.join(UPLOAD_FOLDER, random_string + ".jpg")
-
-        imgData = data['image']
-        convertImage(imgData, upload_loc)
-        sz = len(imgData) / (1024 * 1024)
-
-        decoded_image = cv2.imread(upload_loc)
-
-        extracted_data = pytesseract.image_to_string(decoded_image, lang='eng+hin+tam')
-
-        data = {"Image Data": extracted_data}
-
-        data = jsonify(data)
-
-        return 1
+#
+#    value = request.files['file']
+#    for key, value in request.files('file'):
+#        print(key)
+#        print(type(value))
+#    data = request.form.get()
+#    imgData = request.get_json()
+#    print(imgData)
+#    print(type)
+#    print(1)
+#    currentDT = datetime.datetime.now()    
+#    random_string = currentDT.strftime('%m/%d/%Y')
+#    random_string = "mb";
+#    upload_loc = os.path.join(UPLOAD_FOLDER, random_string + ".jpg")
+#    imgData = data['file']
+#    print(key)
+#    print(value)
+#    convertImage(imgData, upload_loc)
+#    result = model.predict_classes([prepare(imgData)])
+#    r = request
+#    print(r.get_json())
+#    # convert string of image data to uint8
+#    nparr = np.frombuffer(r.data, np.uint8)
+#    # decode image
+#    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+#    img = cv2.resize(img, (256,256))
+#    result = model.predict_classes([prepare(img)])
+#    pred_disease = Classes[int(result)]
+#    
+#    return render_template('index.html', prediction='Predicted disease is ${}'.format(n))
+#    return "MB"
+#
+## POST
+#@app.route('/uploadform', methods=['POST'])
+#def form():
+#    return render_template('index.html')
+#
+#class ImageUpload(Resource):
+#    def post(self):
+#        data = request.get_json()
+#        # random_string = data["latitude"] + "_" + data["longitude"]
+#
+#
+#        random_string = "KA"
+#
+#        upload_loc = os.path.join(UPLOAD_FOLDER, random_string + ".jpg")
+#
+#        imgData = data['image']
+#        convertImage(imgData, upload_loc)
+#        sz = len(imgData) / (1024 * 1024)
+#
+#        decoded_image = cv2.imread(upload_loc)
+#
+#        extracted_data = pytesseract.image_to_string(decoded_image, lang='eng+hin+tam')
+#
+#        data = {"Image Data": extracted_data}
+#
+#        data = jsonify(data)
+#
+#        return 1
 
 
 
