@@ -1,0 +1,38 @@
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" 			crossorigin="anonymous"></script>
+	<scirpt>
+		function readURL(input) {
+	    	if (input.files && input.files[0]) {
+		        var reader = new FileReader();
+
+		        reader.onload = function (e) {
+		            $('#blah').attr('src', e.target.result);
+		        }
+
+		        reader.readAsDataURL(input.files[0]);
+		    }
+		}
+
+	$("#imgInp").change(function(){
+	    readURL(this);
+	});
+
+
+	</scirpt>
+</head>
+<body>
+
+<!-- 	<form>
+	<input type="file" id="file" accept="image/*" oninput="file1.value=file.value">
+
+	<img type="file" src="#" id="file1">
+	</form> -->
+	
+	<form id="form1" runat="server">
+	   <input type='file' id="imgInp" />
+	   <img id="blah" src="#" alt="your image" />
+	</form>
+
+</body>
+</html>	

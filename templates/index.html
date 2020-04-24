@@ -17,23 +17,14 @@
 		
 		h2{
 			color: white;
-			height: 60px;
-			width : 250px;
+			height: 20px;
+			width : 30px;
+			top: 20%;
+			left: 40%;
+			position: absolute;
+			display: inline-block;
 			background-color: #f5af09;
-			position:absolute;
-			margin: auto;
-			top:25%;
-			bottom: 0;
-			border-radius:.25rem;
-			left:0;
-			right:0;
-			font-size:20px;
-			display:flex;
-			justify-content: center;
-			align-items: center;
-			font-family: "sans-serif";
-			cursor: pointer;
-		
+			text-align: center;
 		}		
 				
 		label{
@@ -95,7 +86,7 @@
 
 			    reader.readAsDataURL(input.files[0]);
 			}
-	    	}
+	    }
 		
 	</script>
 		
@@ -105,7 +96,7 @@
 	<div>
 	<form action="{{url_for('predict')}}" method="post" enctype="multipart/form-data">
 		<input type="file" id="file" name="file" accept="image/*">
-		<img id="file" src="#" alt="your image" />
+		<img id="file" alt="your image" />
 		<label for="file">
 			<i class="material-icons">add_photo_alternate</i>
 			<span style="margin-left: 5px;">Choose a Photo</span>
@@ -113,7 +104,6 @@
 
 		<button type="submit" class="btn btn-success">Predict !!!</button>
 	</form>
-	<br><br><br>
 	<h2>{{ prediction }}</h2>
 	</div>
 </body>
